@@ -1,0 +1,142 @@
+PRODUCT REQUIREMENT DOCUMENT (PRD)
+Website Portfolio — Web Developer
+Nama Produk	Personal Portfolio Website
+Versi Dokumen	1.0
+Tanggal	3 September 2026
+Status	Draft
+1. Ringkasan Produk
+Website portfolio pribadi untuk menampilkan profil, keahlian, pengalaman, dan karya/proyek sebagai seorang Web Developer. Website ini berfungsi sebagai media personal branding dan sarana untuk mendapatkan klien atau tawaran pekerjaan.
+
+2. Tujuan
+Menampilkan profil profesional dan keahlian teknis secara jelas.
+
+Menampilkan portofolio proyek dengan detail dan filter.
+
+Memudahkan calon klien/rekruter menghubungi melalui form kontak.
+
+Menyediakan CV yang dapat diunduh.
+
+Menampilkan testimoni untuk membangun kepercayaan.
+
+Tampil profesional di semua perangkat (responsif).
+
+Mendukung mode gelap (dark mode).
+
+3. Target Pengguna
+Segmen	Kebutuhan
+Calon Klien	Melihat portofolio, keahlian, dan cara menghubungi.
+Rekruter/HRD	Melihat CV, pengalaman, dan skill teknis.
+Umum/Komunitas	Mengenal profil dan karya secara umum.
+4. Teknologi
+Kategori	Teknologi
+Frontend Framework	Next.js, React.js, Vue.js, Nuxt.js, Angular
+Styling	Tailwind CSS
+Backend (jika diperlukan)	NestJS, Express.js
+Deployment	Vercel / Netlify (rekomendasi)
+Bahasa	JavaScript / TypeScript
+Catatan: Website bersifat statis (static site). Tidak memerlukan admin panel/CMS. Konten di-hardcode atau diambil dari file JSON/Markdown.
+
+5. Fitur & Kebutuhan Fungsional
+5.1 Halaman / Section
+No	Halaman/Section	Deskripsi
+1	Hero Section	Nama, jabatan (Web Developer), foto profil, CTA (Lihat Karya / Hubungi Saya), tautan sosial media.
+2	Tentang Saya (About)	Deskripsi singkat profil, latar belakang, passion, dan statistik (tahun pengalaman, jumlah proyek, klien).
+3	Keahlian (Skills)	Daftar teknologi yang dikuasai: HTML, CSS, JavaScript, Vue.js, React.js, Angular, Next.js, NestJS, Nuxt.js, Express.js, Tailwind CSS. Ditampilkan dengan ikon/progress bar.
+4	Portofolio / Proyek	Grid/kartu proyek berisi: gambar, judul, deskripsi singkat, teknologi yang dipakai, tautan demo & repository. Terdapat filter kategori (All, Frontend, Backend, Fullstack).
+5	Pengalaman Kerja	Timeline pengalaman kerja / proyek profesional (jika ada).
+6	Testimoni	Ulasan dari klien/rekan kerja.
+7	Kontak	Form kontak (nama, email, subjek, pesan) + informasi kontak langsung (email, WhatsApp, LinkedIn, GitHub).
+8	Footer	Navigasi cepat, sosial media, copyright.
+5.2 Fitur Khusus
+Fitur	Deskripsi
+Dark Mode	Toggle terang/gelap, tersimpan di localStorage.
+Filter Portofolio	Filter proyek berdasarkan kategori.
+Download CV	Tombol unduh CV dalam format PDF.
+Responsive Design	Tampilan optimal di mobile, tablet, dan desktop.
+Animasi Halus	Transisi/animasi ringan (scroll reveal, hover effect).
+SEO Dasar	Meta tags, Open Graph, semantic HTML.
+Form Kontak	Validasi input, integrasi ke layanan seperti EmailJS/Formspree (tanpa backend).
+5.3 Non-Fungsional
+Aspek	Kebutuhan
+Performa	Lighthouse score ≥ 90 (Performance, Accessibility, SEO).
+Kecepatan	First Contentful Paint < 1.5 detik.
+Kompatibilitas	Mendukung browser modern (Chrome, Firefox, Safari, Edge).
+Keamanan	Form kontak bebas spam (basic honeypot/captcha).
+6. Struktur Halaman (Sitemap)
+text
+Beranda (One Page / Multi Section)
+├── Hero
+├── About
+├── Skills
+├── Portfolio (dengan filter)
+├── Experience
+├── Testimonials
+├── Contact
+└── Footer
+Catatan: Website dapat berupa one-page scroll atau multi-page (Home, About, Portfolio, Contact). Rekomendasi: One-page dengan navigasi anchor.
+
+7. Desain & UX
+7.1 Gaya Visual
+Tema: Modern, minimalis, profesional.
+
+Warna: Dominan gelap (dark) dengan aksen warna cerah (misal: cyan/ungu/hijau).
+
+Tipografi: Font sans-serif modern (Inter, Poppins, atau JetBrains Mono untuk kode).
+
+Spacing: Luas, rapi, konsisten.
+
+7.2 Komponen UI
+Navbar sticky dengan toggle dark mode.
+
+Kartu portofolio dengan hover effect.
+
+Timeline vertikal untuk pengalaman.
+
+Grid responsif (1 kolom mobile, 2-3 kolom desktop).
+
+Form input dengan label dan validasi.
+
+8. Konten yang Dibutuhkan
+Konten	Status
+Foto profil	Diperlukan dari user
+Bio / deskripsi diri	Diperlukan dari user
+Data proyek (judul, gambar, deskripsi, link)	Diperlukan dari user
+Daftar pengalaman kerja	Diperlukan dari user
+Testimoni (nama, jabatan, foto)	Diperlukan dari user
+CV PDF	Diperlukan dari user
+Link sosial media	Diperlukan dari user
+9. Kriteria Penerimaan (Acceptance Criteria)
+Semua section tampil dengan baik di mobile, tablet, desktop.
+
+Filter portofolio berfungsi sesuai kategori.
+
+Dark mode berfungsi dan tersimpan setelah refresh.
+
+Form kontak menampilkan pesan sukses setelah submit.
+
+Tombol download CV berfungsi mengunduh file PDF.
+
+Tautan ke sosial media dan repository proyek berfungsi.
+
+Tidak ada broken image/link.
+
+Website dapat diakses publik melalui URL (deployed).
+
+10. Timeline (Estimasi)
+Tahap	Durasi
+Desain UI (wireframe & mockup)	2-3 hari
+Development (frontend)	5-7 hari
+Pengisian konten	1-2 hari
+Testing & perbaikan	2 hari
+Deployment	1 hari
+Total	± 2 minggu
+11. Di Luar Lingkup (Out of Scope)
+Admin panel / CMS.
+
+Blog atau artikel.
+
+Multi-bahasa (i18n).
+
+E-commerce.
+
+Database.

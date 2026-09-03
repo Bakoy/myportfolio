@@ -7,7 +7,7 @@ defineProps<{
 </script>
 
 <template>
-  <div class="reveal mx-auto mb-12 max-w-2xl text-center">
+  <div v-reveal class="reveal mx-auto mb-12 max-w-2xl text-center">
     <span
       class="mb-3 inline-block rounded-full bg-primary-500/10 px-4 py-1 font-mono text-sm font-semibold text-primary-500 dark:bg-primary-500/20 dark:text-primary-400"
     >

@@ -19,6 +19,7 @@ import SectionTitle from '@/components/ui/SectionTitle.vue'
         <div class="space-y-8">
           <div
             v-for="(exp, i) in experiences"
+            v-reveal
             :key="exp.id"
             class="reveal relative flex flex-col gap-4 pl-12 sm:flex-row sm:items-start sm:gap-8 sm:pl-0"
             :class="i % 2 === 0 ? 'sm:flex-row' : 'sm:flex-row-reverse'"

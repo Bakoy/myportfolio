@@ -48,6 +48,7 @@ const stats = [
         <div class="grid grid-cols-2 gap-4">
           <div
             v-for="stat in stats"
+            v-reveal
             :key="stat.label"
             class="reveal flex flex-col items-center justify-center rounded-2xl border border-slate-200 bg-slate-50 p-6 text-center transition-all hover:border-primary-500 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900"
           >

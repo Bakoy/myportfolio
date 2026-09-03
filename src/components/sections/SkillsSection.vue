@@ -44,6 +44,7 @@ const groups = [
       <div class="grid gap-6 md:grid-cols-3">
         <div
           v-for="group in groups"
+          v-reveal
           :key="group.key"
           class="reveal rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:border-primary-500 hover:shadow-xl dark:border-slate-700 dark:bg-slate-800"
         >

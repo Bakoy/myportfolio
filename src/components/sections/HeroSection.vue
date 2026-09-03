@@ -19,8 +19,7 @@ const techStack = ['Vue.js', 'React.js', 'Next.js', 'NestJS', 'Tailwind CSS']
     <div
       class="mx-auto grid w-full max-w-6xl gap-12 px-4 py-16 sm:px-6 md:grid-cols-2 md:items-center"
     >
-      <p>{{ profile.name }}</p>
-      <div class="reveal order-2 text-center md:order-1 md:text-left">
+      <div v-reveal class="reveal order-2 text-center md:order-1 md:text-left">
         <p class="mb-2 font-mono text-sm font-medium text-primary-500">&lt;Hello, saya&gt;</p>
         <h1
           class="text-4xl font-extrabold leading-tight text-slate-900 dark:text-white sm:text-5xl"
@@ -87,7 +86,7 @@ const techStack = ['Vue.js', 'React.js', 'Next.js', 'NestJS', 'Tailwind CSS']
         </p>
       </div>
 
-      <div class="reveal order-1 flex justify-center md:order-2">
+      <div v-reveal class="reveal order-1 flex justify-center md:order-2">
         <div class="relative">
           <div
             class="absolute inset-0 -rotate-6 rounded-3xl bg-primary-500/20 dark:bg-primary-500/30"

@@ -87,7 +87,6 @@ const labelClasses = 'mb-1.5 block text-sm font-semibold text-slate-700 dark:tex
           v-model="formData.email"
           type="email"
           placeholder="email@contoh.com"
-          class="inputClasses"
           :class="inputClasses(!!errors.email)"
         />
         <p v-if="errors.email" class="mt-1 text-xs text-red-500">{{ errors.email }}</p>
@@ -101,7 +100,6 @@ const labelClasses = 'mb-1.5 block text-sm font-semibold text-slate-700 dark:tex
         v-model="formData.subject"
         type="text"
         placeholder="Subjek pesan"
-        class="inputClasses"
         :class="inputClasses(!!errors.subject)"
       />
       <p v-if="errors.subject" class="mt-1 text-xs text-red-500">{{ errors.subject }}</p>
@@ -114,7 +112,6 @@ const labelClasses = 'mb-1.5 block text-sm font-semibold text-slate-700 dark:tex
         v-model="formData.message"
         rows="5"
         placeholder="Tulis pesan Anda di sini..."
-        class="inputClasses"
         :class="inputClasses(!!errors.message)"
       ></textarea>
       <p v-if="errors.message" class="mt-1 text-xs text-red-500">{{ errors.message }}</p>

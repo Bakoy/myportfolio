@@ -16,6 +16,7 @@ import SectionTitle from '@/components/ui/SectionTitle.vue'
       <div class="grid gap-6 md:grid-cols-2">
         <figure
           v-for="testimonial in testimonials"
+          v-reveal
           :key="testimonial.id"
           class="reveal relative rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:border-primary-500 hover:shadow-xl dark:border-slate-700 dark:bg-slate-800"
         >

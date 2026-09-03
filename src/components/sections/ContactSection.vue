@@ -17,7 +17,7 @@ import SocialIcon from '@/components/ui/SocialIcon.vue'
       />
 
       <div class="grid gap-10 md:grid-cols-5">
-        <div class="reveal space-y-6 md:col-span-2">
+        <div v-reveal class="reveal space-y-6 md:col-span-2">
           <div class="flex items-start gap-4">
             <div class="rounded-xl bg-primary-500/10 p-3 text-primary-500 dark:bg-primary-500/20 dark:text-primary-400">
               <Mail class="h-5 w-5" />
@@ -70,7 +70,7 @@ import SocialIcon from '@/components/ui/SocialIcon.vue'
           </div>
         </div>
 
-        <div class="reveal rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800 md:col-span-3">
+        <div v-reveal class="reveal rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800 md:col-span-3">
           <ContactForm />
         </div>
       </div>

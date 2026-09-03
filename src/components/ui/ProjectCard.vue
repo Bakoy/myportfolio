@@ -1,8 +1,11 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
 import { ArrowUpRight, FolderGit2 } from '@lucide/vue'
 import type { Project } from '@/types'
 
 defineProps<{ project: Project }>()
+
+const { t } = useI18n()
 </script>
 
 <template>
@@ -25,7 +28,7 @@ defineProps<{ project: Project }>()
           rel="noopener"
           class="flex items-center gap-1 rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-900 transition-colors hover:bg-primary-500 hover:text-white"
         >
-          Demo <ArrowUpRight class="h-4 w-4" />
+          {{ t('projectCard.demo') }} <ArrowUpRight class="h-4 w-4" />
         </a>
         <a
           v-if="project.repoUrl"
@@ -34,7 +37,7 @@ defineProps<{ project: Project }>()
           rel="noopener"
           class="flex items-center gap-1 rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-900 transition-colors hover:bg-primary-500 hover:text-white"
         >
-          Repository <FolderGit2 class="h-4 w-4" />
+          {{ t('projectCard.repository') }} <FolderGit2 class="h-4 w-4" />
         </a>
       </div>
     </div>

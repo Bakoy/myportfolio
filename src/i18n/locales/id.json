@@ -1,0 +1,111 @@
+{
+  "nav": {
+    "home": "Beranda",
+    "about": "Tentang",
+    "skills": "Keahlian",
+    "portfolio": "Portofolio",
+    "experience": "Pengalaman",
+    "testimonials": "Testimoni",
+    "contact": "Kontak",
+    "hireMe": "Hire Me"
+  },
+  "hero": {
+    "greeting": "Hello, saya",
+    "viewWork": "Lihat Karya",
+    "contactMe": "Hubungi Saya",
+    "downloadCv": "Download CV"
+  },
+  "about": {
+    "eyebrow": "<tentang />",
+    "title": "Tentang Saya",
+    "description": "Kenalan lebih dekat dengan saya dan perjalanan karier saya sebagai Web Developer.",
+    "who": "Siapakah saya?",
+    "nameLabel": "Nama:",
+    "locationLabel": "Lokasi:",
+    "emailLabel": "Email:",
+    "stats": {
+      "years": "Tahun Pengalaman",
+      "projects": "Proyek Selesai",
+      "clients": "Klien",
+      "awards": "Penghargaan"
+    }
+  },
+  "skills": {
+    "eyebrow": "<keahlian />",
+    "title": "Keahlian Teknis",
+    "description": "Berbagai teknologi yang saya kuasai untuk membangun solusi web modern.",
+    "groups": {
+      "frontendTitle": "Frontend",
+      "frontendDesc": "Teknologi untuk membangun antarmuka pengguna",
+      "backendTitle": "Backend",
+      "backendDesc": "Teknologi untuk membangun sisi server",
+      "toolsTitle": "Tools & Lainnya",
+      "toolsDesc": "Tools yang mendukung proses development"
+    }
+  },
+  "portfolio": {
+    "eyebrow": "<portofolio />",
+    "title": "Karya & Proyek",
+    "description": "Beberapa proyek yang pernah saya kerjakan. Klik untuk melihat detail lebih lanjut.",
+    "filters": {
+      "all": "All",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "fullstack": "Fullstack"
+    }
+  },
+  "experience": {
+    "eyebrow": "<pengalaman />",
+    "title": "Pengalaman Kerja",
+    "description": "Perjalanan karier saya sebagai Web Developer."
+  },
+  "testimonials": {
+    "eyebrow": "<testimoni />",
+    "title": "Apa Kata Mereka",
+    "description": "Ulasan dan kesan dari klien serta rekan kerja yang pernah berkolaborasi dengan saya."
+  },
+  "contact": {
+    "eyebrow": "<kontak />",
+    "title": "Mari Berkolaborasi",
+    "description": "Punya proyek atau pertanyaan? Jangan ragu untuk menghubungi saya.",
+    "email": "Email",
+    "whatsapp": "WhatsApp",
+    "location": "Lokasi",
+    "follow": "Ikuti Saya"
+  },
+  "form": {
+    "name": "Nama",
+    "namePlaceholder": "Nama Anda",
+    "email": "Email",
+    "emailPlaceholder": "email\\@contoh.com",
+    "subject": "Subjek",
+    "subjectPlaceholder": "Subjek pesan",
+    "message": "Pesan",
+    "messagePlaceholder": "Tulis pesan Anda di sini...",
+    "send": "Kirim Pesan",
+    "sending": "Mengirim...",
+    "validate": {
+      "nameRequired": "Nama wajib diisi",
+      "emailRequired": "Email wajib diisi",
+      "emailInvalid": "Format email tidak valid",
+      "subjectRequired": "Subjek wajib diisi",
+      "messageRequired": "Pesan wajib diisi",
+      "messageTooShort": "Pesan minimal 10 karakter"
+    },
+    "success": "Pesan Anda berhasil dikirim. Terima kasih!",
+    "error": "Gagal mengirim pesan. Silakan coba lagi atau hubungi melalui email langsung."
+  },
+  "projectCard": {
+    "demo": "Demo",
+    "repository": "Repository"
+  },
+  "footer": {
+    "backToTop": "Kembali ke atas",
+    "rights": "Semua hak cipta dilindungi"
+  },
+  "meta": {
+    "title": "Portfolio — Web Developer",
+    "description": "Portfolio Web Developer - Menampilkan profil, keahlian, pengalaman, dan karya/proyek sebagai seorang Web Developer.",
+    "ogDescription": "Portfolio pribadi menampilkan profil, keahlian, dan karya sebagai Web Developer."
+  }
+}

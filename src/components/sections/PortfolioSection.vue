@@ -1,25 +1,28 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { usePortfolioFilter, type FilterKey } from '@/composables/usePortfolioFilter'
 import SectionTitle from '@/components/ui/SectionTitle.vue'
 import ProjectCard from '@/components/ui/ProjectCard.vue'
 
+const { t } = useI18n()
 const { filteredProjects, setFilter, activeFilter } = usePortfolioFilter()
 
-const filterLabels: Record<FilterKey, string> = {
-  all: 'All',
-  frontend: 'Frontend',
-  backend: 'Backend',
-  fullstack: 'Fullstack',
-}
+const filterLabels = computed<Record<FilterKey, string>>(() => ({
+  all: t('portfolio.filters.all'),
+  frontend: t('portfolio.filters.frontend'),
+  backend: t('portfolio.filters.backend'),
+  fullstack: t('portfolio.filters.fullstack'),
+}))
 </script>
 
 <template>
   <section id="portfolio" class="py-20">
     <div class="mx-auto max-w-6xl px-4 sm:px-6">
       <SectionTitle
-        eyebrow="&lt;portofolio /&gt;"
-        title="Karya & Proyek"
-        description="Beberapa proyek yang pernah saya kerjakan. Klik untuk melihat detail lebih lanjut."
+        :eyebrow="t('portfolio.eyebrow')"
+        :title="t('portfolio.title')"
+        :description="t('portfolio.description')"
       />
 
       <div class="mb-10 flex flex-wrap justify-center gap-2">

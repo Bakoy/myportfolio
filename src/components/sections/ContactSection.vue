@@ -1,19 +1,23 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
 import { Mail, Phone, MapPin } from '@lucide/vue'
-import { profile } from '@/data/profile'
+import { useLocalizedData } from '@/data'
 import { socialLinks } from '@/data/socialLinks'
 import SectionTitle from '@/components/ui/SectionTitle.vue'
 import ContactForm from '@/components/ui/ContactForm.vue'
 import SocialIcon from '@/components/ui/SocialIcon.vue'
+
+const { t } = useI18n()
+const { currentProfile } = useLocalizedData()
 </script>
 
 <template>
   <section id="contact" class="bg-slate-50 py-20 dark:bg-slate-900">
     <div class="mx-auto max-w-6xl px-4 sm:px-6">
       <SectionTitle
-        eyebrow="&lt;kontak /&gt;"
-        title="Mari Berkolaborasi"
-        description="Punya proyek atau pertanyaan? Jangan ragu untuk menghubungi saya."
+        :eyebrow="t('contact.eyebrow')"
+        :title="t('contact.title')"
+        :description="t('contact.description')"
       />
 
       <div class="grid gap-10 md:grid-cols-5">
@@ -23,9 +27,9 @@ import SocialIcon from '@/components/ui/SocialIcon.vue'
               <Mail class="h-5 w-5" />
             </div>
             <div>
-              <p class="font-semibold text-slate-900 dark:text-white">Email</p>
-              <a :href="`mailto:${profile.email}`" class="text-sm text-slate-600 hover:text-primary-500 dark:text-slate-400">
-                {{ profile.email }}
+              <p class="font-semibold text-slate-900 dark:text-white">{{ t('contact.email') }}</p>
+              <a :href="`mailto:${currentProfile.email}`" class="text-sm text-slate-600 hover:text-primary-500 dark:text-slate-400">
+                {{ currentProfile.email }}
               </a>
             </div>
           </div>
@@ -35,9 +39,9 @@ import SocialIcon from '@/components/ui/SocialIcon.vue'
               <Phone class="h-5 w-5" />
             </div>
             <div>
-              <p class="font-semibold text-slate-900 dark:text-white">WhatsApp</p>
-              <a :href="`tel:${profile.phone}`" class="text-sm text-slate-600 hover:text-primary-500 dark:text-slate-400">
-                {{ profile.phone }}
+              <p class="font-semibold text-slate-900 dark:text-white">{{ t('contact.whatsapp') }}</p>
+              <a :href="`tel:${currentProfile.phone}`" class="text-sm text-slate-600 hover:text-primary-500 dark:text-slate-400">
+                {{ currentProfile.phone }}
               </a>
             </div>
           </div>
@@ -47,13 +51,13 @@ import SocialIcon from '@/components/ui/SocialIcon.vue'
               <MapPin class="h-5 w-5" />
             </div>
             <div>
-              <p class="font-semibold text-slate-900 dark:text-white">Lokasi</p>
-              <p class="text-sm text-slate-600 dark:text-slate-400">{{ profile.location }}</p>
+              <p class="font-semibold text-slate-900 dark:text-white">{{ t('contact.location') }}</p>
+              <p class="text-sm text-slate-600 dark:text-slate-400">{{ currentProfile.location }}</p>
             </div>
           </div>
 
           <div class="border-t border-slate-200 pt-6 dark:border-slate-700">
-            <p class="mb-4 font-semibold text-slate-900 dark:text-white">Ikuti Saya</p>
+            <p class="mb-4 font-semibold text-slate-900 dark:text-white">{{ t('contact.follow') }}</p>
             <div class="flex gap-3">
               <a
                 v-for="social in socialLinks"

@@ -1,5 +1,5 @@
 import { ref, computed } from 'vue'
-import { projects } from '@/data/projects'
+import { useLocalizedData } from '@/data'
 import type { Project, ProjectCategory } from '@/types'
 
 export type FilterKey = 'all' | ProjectCategory
@@ -7,9 +7,11 @@ export type FilterKey = 'all' | ProjectCategory
 const activeFilter = ref<FilterKey>('all')
 
 function usePortfolioFilter() {
+  const { currentProjects } = useLocalizedData()
+
   const filteredProjects = computed<Project[]>(() => {
-    if (activeFilter.value === 'all') return projects
-    return projects.filter((p) => p.category === activeFilter.value)
+    if (activeFilter.value === 'all') return currentProjects.value
+    return currentProjects.value.filter((p) => p.category === activeFilter.value)
   })
 
   const setFilter = (key: FilterKey) => {
@@ -17,7 +19,6 @@ function usePortfolioFilter() {
   }
 
   return {
-    projects,
     filteredProjects,
     setFilter,
     activeFilter,

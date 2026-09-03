@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { Code2, Server, Wrench } from '@lucide/vue'
 import { skills } from '@/data/skills'
 import SectionTitle from '@/components/ui/SectionTitle.vue'
+
+const { t } = useI18n()
 
 const skillGroups = computed(() => ({
   frontend: skills.filter((s) => s.category === 'frontend'),
@@ -10,35 +13,35 @@ const skillGroups = computed(() => ({
   tools: skills.filter((s) => s.category === 'tool'),
 }))
 
-const groups = [
+const groups = computed(() => [
   {
     key: 'frontend' as const,
-    title: 'Frontend',
+    title: t('skills.groups.frontendTitle'),
     icon: Code2,
-    description: 'Teknologi untuk membangun antarmuka pengguna',
+    description: t('skills.groups.frontendDesc'),
   },
   {
     key: 'backend' as const,
-    title: 'Backend',
+    title: t('skills.groups.backendTitle'),
     icon: Server,
-    description: 'Teknologi untuk membangun sisi server',
+    description: t('skills.groups.backendDesc'),
   },
   {
     key: 'tools' as const,
-    title: 'Tools & Lainnya',
+    title: t('skills.groups.toolsTitle'),
     icon: Wrench,
-    description: 'Tools yang mendukung proses development',
+    description: t('skills.groups.toolsDesc'),
   },
-]
+])
 </script>
 
 <template>
   <section id="skills" class="bg-slate-50 py-20 dark:bg-slate-900">
     <div class="mx-auto max-w-6xl px-4 sm:px-6">
       <SectionTitle
-        eyebrow="&lt;keahlian /&gt;"
-        title="Keahlian Teknis"
-        description="Berbagai teknologi yang saya kuasai untuk membangun solusi web modern."
+        :eyebrow="t('skills.eyebrow')"
+        :title="t('skills.title')"
+        :description="t('skills.description')"
       />
 
       <div class="grid gap-6 md:grid-cols-3">

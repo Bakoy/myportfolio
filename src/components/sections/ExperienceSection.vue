@@ -1,16 +1,20 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
 import { Briefcase } from '@lucide/vue'
-import { experiences } from '@/data/experiences'
+import { useLocalizedData } from '@/data'
 import SectionTitle from '@/components/ui/SectionTitle.vue'
+
+const { t } = useI18n()
+const { currentExperiences } = useLocalizedData()
 </script>
 
 <template>
   <section id="experience" class="bg-slate-50 py-20 dark:bg-slate-900">
     <div class="mx-auto max-w-4xl px-4 sm:px-6">
       <SectionTitle
-        eyebrow="&lt;pengalaman /&gt;"
-        title="Pengalaman Kerja"
-        description="Perjalanan karier saya sebagai Web Developer."
+        :eyebrow="t('experience.eyebrow')"
+        :title="t('experience.title')"
+        :description="t('experience.description')"
       />
 
       <div class="relative">
@@ -18,7 +22,7 @@ import SectionTitle from '@/components/ui/SectionTitle.vue'
 
         <div class="space-y-8">
           <div
-            v-for="(exp, i) in experiences"
+            v-for="(exp, i) in currentExperiences"
             v-reveal
             :key="exp.id"
             class="reveal relative flex flex-col gap-4 pl-12 sm:flex-row sm:items-start sm:gap-8 sm:pl-0"

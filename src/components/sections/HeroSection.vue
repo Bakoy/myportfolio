@@ -1,10 +1,15 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { ArrowRight, Download, MapPin, BadgeCheck } from '@lucide/vue'
-import { profile } from '@/data/profile'
+import { useLocalizedData } from '@/data'
 import { socialLinks } from '@/data/socialLinks'
 import SocialIcon from '@/components/ui/SocialIcon.vue'
 
-const techStack = ['Vue.js', 'React.js', 'Next.js', 'NestJS', 'Tailwind CSS']
+const { t } = useI18n()
+const { currentProfile } = useLocalizedData()
+
+const techStack = computed(() => ['Vue.js', 'React.js', 'Next.js', 'NestJS', 'Tailwind CSS'])
 </script>
 
 <template>
@@ -20,20 +25,22 @@ const techStack = ['Vue.js', 'React.js', 'Next.js', 'NestJS', 'Tailwind CSS']
       class="mx-auto grid w-full max-w-6xl gap-12 px-4 py-16 sm:px-6 md:grid-cols-2 md:items-center"
     >
       <div v-reveal class="reveal order-2 text-center md:order-1 md:text-left">
-        <p class="mb-2 font-mono text-sm font-medium text-primary-500">&lt;Hello, saya&gt;</p>
+        <p class="mb-2 font-mono text-sm font-medium text-primary-500">
+          &lt;{{ t('hero.greeting') }}&gt;
+        </p>
         <h1
           class="text-4xl font-extrabold leading-tight text-slate-900 dark:text-white sm:text-5xl"
         >
-          {{ profile.name }}
+          {{ currentProfile.name }}
         </h1>
         <p
           class="mt-2 flex items-center justify-center gap-2 text-2xl font-bold text-primary-500 sm:text-3xl md:justify-start"
         >
-          {{ profile.position }}
+          {{ currentProfile.position }}
           <BadgeCheck class="h-7 w-7" />
         </p>
         <p class="mt-4 text-slate-600 dark:text-slate-400">
-          {{ profile.tagline }}
+          {{ currentProfile.tagline }}
         </p>
 
         <div class="mt-6 flex flex-wrap items-center justify-center gap-2 md:justify-start">
@@ -53,14 +60,14 @@ const techStack = ['Vue.js', 'React.js', 'Next.js', 'NestJS', 'Tailwind CSS']
             href="#portfolio"
             class="group inline-flex items-center gap-2 rounded-full bg-primary-500 px-6 py-3 font-semibold text-white transition-all hover:bg-primary-600"
           >
-            Lihat Karya
+            {{ t('hero.viewWork') }}
             <ArrowRight class="h-5 w-5 transition-transform group-hover:translate-x-1" />
           </a>
           <a
             href="#contact"
             class="inline-flex items-center gap-2 rounded-full border-2 border-slate-300 px-6 py-3 font-semibold text-slate-700 transition-all hover:border-primary-500 hover:text-primary-500 dark:border-slate-700 dark:text-slate-300"
           >
-            Hubungi Saya
+            {{ t('hero.contactMe') }}
           </a>
         </div>
 
@@ -82,7 +89,7 @@ const techStack = ['Vue.js', 'React.js', 'Next.js', 'NestJS', 'Tailwind CSS']
           class="mt-6 flex items-center justify-center gap-1.5 text-sm text-slate-500 dark:text-slate-400 md:justify-start"
         >
           <MapPin class="h-4 w-4" />
-          {{ profile.location }}
+          {{ currentProfile.location }}
         </p>
       </div>
 
@@ -92,16 +99,16 @@ const techStack = ['Vue.js', 'React.js', 'Next.js', 'NestJS', 'Tailwind CSS']
             class="absolute inset-0 -rotate-6 rounded-3xl bg-primary-500/20 dark:bg-primary-500/30"
           ></div>
           <img
-            :src="profile.photo"
-            :alt="profile.name"
+            :src="currentProfile.photo"
+            :alt="currentProfile.name"
             class="relative h-64 w-64 rounded-3xl object-cover shadow-xl sm:h-80 sm:w-80"
           />
           <a
-            :href="profile.cvUrl"
+            :href="currentProfile.cvUrl"
             class="absolute -bottom-4 -right-4 flex items-center gap-2 rounded-2xl bg-white px-4 py-3 font-semibold text-slate-800 shadow-lg transition-all hover:bg-primary-50 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700"
           >
             <Download class="h-5 w-5 text-primary-500" />
-            Download CV
+            {{ t('hero.downloadCv') }}
           </a>
         </div>
       </div>

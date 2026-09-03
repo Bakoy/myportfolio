@@ -1,18 +1,23 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { ArrowUp } from '@lucide/vue'
-import { profile } from '@/data/profile'
+import { useLocalizedData } from '@/data'
 import { socialLinks } from '@/data/socialLinks'
 import SocialIcon from '@/components/ui/SocialIcon.vue'
 
-const navItems = [
-  { label: 'Beranda', href: '#home' },
-  { label: 'Tentang', href: '#about' },
-  { label: 'Keahlian', href: '#skills' },
-  { label: 'Portofolio', href: '#portfolio' },
-  { label: 'Pengalaman', href: '#experience' },
-  { label: 'Testimoni', href: '#testimonials' },
-  { label: 'Kontak', href: '#contact' },
-]
+const { t } = useI18n()
+const { currentProfile } = useLocalizedData()
+
+const navItems = computed(() => [
+  { label: t('nav.home'), href: '#home' },
+  { label: t('nav.about'), href: '#about' },
+  { label: t('nav.skills'), href: '#skills' },
+  { label: t('nav.portfolio'), href: '#portfolio' },
+  { label: t('nav.experience'), href: '#experience' },
+  { label: t('nav.testimonials'), href: '#testimonials' },
+  { label: t('nav.contact'), href: '#contact' },
+])
 </script>
 
 <template>
@@ -50,13 +55,13 @@ const navItems = [
 
         <div class="flex w-full flex-col items-center justify-between gap-4 border-t border-slate-800 pt-6 sm:flex-row">
           <p class="text-sm text-slate-500">
-            © {{ new Date().getFullYear() }} {{ profile.name }}. All rights reserved.
+            © {{ new Date().getFullYear() }} {{ currentProfile.name }}. {{ t('footer.rights') }}.
           </p>
           <a
             href="#home"
             class="flex items-center gap-2 text-sm text-slate-400 transition-colors hover:text-primary-400"
           >
-            Kembali ke atas <ArrowUp class="h-4 w-4" />
+            {{ t('footer.backToTop') }} <ArrowUp class="h-4 w-4" />
           </a>
         </div>
       </div>

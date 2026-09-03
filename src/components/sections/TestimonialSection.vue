@@ -1,21 +1,25 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
 import { Quote, Star } from '@lucide/vue'
-import { testimonials } from '@/data/testimonials'
+import { useLocalizedData } from '@/data'
 import SectionTitle from '@/components/ui/SectionTitle.vue'
+
+const { t } = useI18n()
+const { currentTestimonials } = useLocalizedData()
 </script>
 
 <template>
   <section id="testimonials" class="py-20">
     <div class="mx-auto max-w-6xl px-4 sm:px-6">
       <SectionTitle
-        eyebrow="&lt;testimoni /&gt;"
-        title="Apa Kata Mereka"
-        description="Ulasan dan kesan dari klien serta rekan kerja yang pernah berkolaborasi dengan saya."
+        :eyebrow="t('testimonials.eyebrow')"
+        :title="t('testimonials.title')"
+        :description="t('testimonials.description')"
       />
 
       <div class="grid gap-6 md:grid-cols-2">
         <figure
-          v-for="testimonial in testimonials"
+          v-for="testimonial in currentTestimonials"
           v-reveal
           :key="testimonial.id"
           class="reveal relative rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:border-primary-500 hover:shadow-xl dark:border-slate-700 dark:bg-slate-800"

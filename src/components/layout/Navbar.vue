@@ -1,23 +1,43 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue'
-import { Menu, X, Sun, Moon } from '@lucide/vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { Menu, X, Sun, Moon, Globe } from '@lucide/vue'
 import { socialLinks } from '@/data/socialLinks'
 import { useDarkMode } from '@/composables/useDarkMode'
+import { useLocale } from '@/composables/useLocale'
 import SocialIcon from '@/components/ui/SocialIcon.vue'
 
+const { t } = useI18n()
+const { currentLocale, setLocale } = useLocale()
+
 const isOpen = ref(false)
+const isLangOpen = ref(false)
 const isScrolled = ref(false)
 const { isDark, toggleDarkMode } = useDarkMode()
 
-const navItems = [
-  { label: 'Beranda', href: '#home' },
-  { label: 'Tentang', href: '#about' },
-  { label: 'Keahlian', href: '#skills' },
-  { label: 'Portofolio', href: '#portfolio' },
-  { label: 'Pengalaman', href: '#experience' },
-  { label: 'Testimoni', href: '#testimonials' },
-  { label: 'Kontak', href: '#contact' },
+const navItems = computed(() => [
+  { label: t('nav.home'), href: '#home' },
+  { label: t('nav.about'), href: '#about' },
+  { label: t('nav.skills'), href: '#skills' },
+  { label: t('nav.portfolio'), href: '#portfolio' },
+  { label: t('nav.experience'), href: '#experience' },
+  { label: t('nav.testimonials'), href: '#testimonials' },
+  { label: t('nav.contact'), href: '#contact' },
+])
+
+const languages = [
+  { code: 'id', label: 'ID' },
+  { code: 'en', label: 'EN' },
 ]
+
+const currentLangLabel = computed(
+  () => languages.find((l) => l.code === currentLocale.value)?.label ?? 'ID',
+)
+
+const switchLanguage = (code: 'id' | 'en') => {
+  setLocale(code)
+  isLangOpen.value = false
+}
 
 const handleScroll = () => {
   isScrolled.value = window.scrollY > 20
@@ -55,6 +75,35 @@ onUnmounted(() => {
       </div>
 
       <div class="flex items-center gap-3">
+        <div class="relative">
+          <button
+            @click="isLangOpen = !isLangOpen"
+            class="flex items-center gap-1.5 rounded-full p-2 text-sm font-semibold text-slate-600 transition-colors hover:bg-slate-100 hover:text-primary-500 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-primary-400"
+            :aria-label="'Language'"
+          >
+            <Globe class="h-5 w-5" />
+            <span class="hidden sm:inline">{{ currentLangLabel }}</span>
+          </button>
+          <div
+            v-if="isLangOpen"
+            class="absolute right-0 top-full mt-2 w-24 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-lg dark:border-slate-700 dark:bg-slate-800"
+          >
+            <button
+              v-for="lang in languages"
+              :key="lang.code"
+              @click="switchLanguage(lang.code as 'id' | 'en')"
+              class="block w-full px-4 py-2 text-left text-sm font-semibold transition-colors"
+              :class="
+                currentLocale === lang.code
+                  ? 'bg-primary-500/10 text-primary-500'
+                  : 'text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-700'
+              "
+            >
+              {{ lang.label }}
+            </button>
+          </div>
+        </div>
+
         <button
           @click="toggleDarkMode()"
           class="rounded-full p-2 text-slate-600 transition-colors hover:bg-slate-100 hover:text-primary-500 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-primary-400"
@@ -68,7 +117,7 @@ onUnmounted(() => {
           href="#contact"
           class="hidden rounded-full bg-primary-500 px-5 py-2 text-sm font-semibold text-white transition-all hover:bg-primary-600 sm:block"
         >
-          Hire Me
+          {{ t('nav.hireMe') }}
         </a>
 
         <button
@@ -87,6 +136,21 @@ onUnmounted(() => {
       class="border-t border-slate-200 bg-white px-4 py-4 dark:border-slate-800 dark:bg-slate-950 md:hidden"
     >
       <div class="flex flex-col gap-4">
+        <div class="flex gap-2">
+          <button
+            v-for="lang in languages"
+            :key="lang.code"
+            @click="switchLanguage(lang.code as 'id' | 'en')"
+            class="rounded-full px-4 py-1.5 text-sm font-semibold transition-colors"
+            :class="
+              currentLocale === lang.code
+                ? 'bg-primary-500 text-white'
+                : 'border border-slate-300 text-slate-600 dark:border-slate-700 dark:text-slate-300'
+            "
+          >
+            {{ lang.label }}
+          </button>
+        </div>
         <a
           v-for="item in navItems"
           :key="item.href"

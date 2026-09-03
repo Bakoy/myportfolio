@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 import { Send, LoaderCircle, CheckCircle2 } from '@lucide/vue'
+
+const { t } = useI18n()
 
 const FORM_ENDPOINT = 'https://formspree.io/f/your-form-id'
 
@@ -17,16 +20,16 @@ const status = ref<'idle' | 'loading' | 'success' | 'error'>('idle')
 const validate = (): boolean => {
   const newErrors: Record<string, string> = {}
 
-  if (!formData.value.name.trim()) newErrors.name = 'Nama wajib diisi'
+  if (!formData.value.name.trim()) newErrors.name = t('form.validate.nameRequired')
   if (!formData.value.email.trim()) {
-    newErrors.email = 'Email wajib diisi'
+    newErrors.email = t('form.validate.emailRequired')
   } else if (!/^[\w.+-]+@[\w-]+\.[\w.]+$/.test(formData.value.email)) {
-    newErrors.email = 'Format email tidak valid'
+    newErrors.email = t('form.validate.emailInvalid')
   }
-  if (!formData.value.subject.trim()) newErrors.subject = 'Subjek wajib diisi'
-  if (!formData.value.message.trim()) newErrors.message = 'Pesan wajib diisi'
+  if (!formData.value.subject.trim()) newErrors.subject = t('form.validate.subjectRequired')
+  if (!formData.value.message.trim()) newErrors.message = t('form.validate.messageRequired')
   else if (formData.value.message.trim().length < 10) {
-    newErrors.message = 'Pesan minimal 10 karakter'
+    newErrors.message = t('form.validate.messageTooShort')
   }
 
   errors.value = newErrors
@@ -69,24 +72,24 @@ const labelClasses = 'mb-1.5 block text-sm font-semibold text-slate-700 dark:tex
   <form @submit.prevent="handleSubmit" class="space-y-4" novalidate>
     <div class="grid gap-4 sm:grid-cols-2">
       <div>
-        <label for="name" :class="labelClasses">Nama</label>
+        <label for="name" :class="labelClasses">{{ t('form.name') }}</label>
         <input
           id="name"
           v-model="formData.name"
           type="text"
-          placeholder="Nama Anda"
+          :placeholder="t('form.namePlaceholder')"
           :class="inputClasses(!!errors.name)"
         />
         <p v-if="errors.name" class="mt-1 text-xs text-red-500">{{ errors.name }}</p>
       </div>
 
       <div>
-        <label for="email" :class="labelClasses">Email</label>
+        <label for="email" :class="labelClasses">{{ t('form.email') }}</label>
         <input
           id="email"
           v-model="formData.email"
           type="email"
-          placeholder="email@contoh.com"
+          :placeholder="t('form.emailPlaceholder')"
           :class="inputClasses(!!errors.email)"
         />
         <p v-if="errors.email" class="mt-1 text-xs text-red-500">{{ errors.email }}</p>
@@ -94,24 +97,24 @@ const labelClasses = 'mb-1.5 block text-sm font-semibold text-slate-700 dark:tex
     </div>
 
     <div>
-      <label for="subject" :class="labelClasses">Subjek</label>
+      <label for="subject" :class="labelClasses">{{ t('form.subject') }}</label>
       <input
         id="subject"
         v-model="formData.subject"
         type="text"
-        placeholder="Subjek pesan"
+        :placeholder="t('form.subjectPlaceholder')"
         :class="inputClasses(!!errors.subject)"
       />
       <p v-if="errors.subject" class="mt-1 text-xs text-red-500">{{ errors.subject }}</p>
     </div>
 
     <div>
-      <label for="message" :class="labelClasses">Pesan</label>
+      <label for="message" :class="labelClasses">{{ t('form.message') }}</label>
       <textarea
         id="message"
         v-model="formData.message"
         rows="5"
-        placeholder="Tulis pesan Anda di sini..."
+        :placeholder="t('form.messagePlaceholder')"
         :class="inputClasses(!!errors.message)"
       ></textarea>
       <p v-if="errors.message" class="mt-1 text-xs text-red-500">{{ errors.message }}</p>
@@ -133,7 +136,7 @@ const labelClasses = 'mb-1.5 block text-sm font-semibold text-slate-700 dark:tex
     >
       <LoaderCircle v-if="status === 'loading'" class="h-5 w-5 animate-spin" />
       <Send v-else class="h-5 w-5" />
-      {{ status === 'loading' ? 'Mengirim...' : 'Kirim Pesan' }}
+      {{ status === 'loading' ? t('form.sending') : t('form.send') }}
     </button>
 
     <div
@@ -141,14 +144,14 @@ const labelClasses = 'mb-1.5 block text-sm font-semibold text-slate-700 dark:tex
       class="flex items-center gap-2 rounded-xl bg-green-500/10 p-4 text-green-700 dark:text-green-400"
     >
       <CheckCircle2 class="h-5 w-5" />
-      <span>Pesan Anda berhasil dikirim. Terima kasih!</span>
+      <span>{{ t('form.success') }}</span>
     </div>
 
     <div
       v-if="status === 'error'"
       class="rounded-xl bg-red-500/10 p-4 text-sm text-red-600 dark:text-red-400"
     >
-      Gagal mengirim pesan. Silakan coba lagi atau hubungi melalui email langsung.
+      {{ t('form.error') }}
     </div>
   </form>
 </template>

@@ -1,0 +1,111 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "skills": "Skills",
+    "portfolio": "Portfolio",
+    "experience": "Experience",
+    "testimonials": "Testimonials",
+    "contact": "Contact",
+    "hireMe": "Hire Me"
+  },
+  "hero": {
+    "greeting": "Hello, I'm",
+    "viewWork": "View My Work",
+    "contactMe": "Contact Me",
+    "downloadCv": "Download CV"
+  },
+  "about": {
+    "eyebrow": "<about />",
+    "title": "About Me",
+    "description": "Get to know me better and my career journey as a Web Developer.",
+    "who": "Who am I?",
+    "nameLabel": "Name:",
+    "locationLabel": "Location:",
+    "emailLabel": "Email:",
+    "stats": {
+      "years": "Years of Experience",
+      "projects": "Completed Projects",
+      "clients": "Clients",
+      "awards": "Awards"
+    }
+  },
+  "skills": {
+    "eyebrow": "<skills />",
+    "title": "Technical Skills",
+    "description": "Various technologies I master to build modern web solutions.",
+    "groups": {
+      "frontendTitle": "Frontend",
+      "frontendDesc": "Technologies for building user interfaces",
+      "backendTitle": "Backend",
+      "backendDesc": "Technologies for building the server side",
+      "toolsTitle": "Tools & Others",
+      "toolsDesc": "Tools that support the development process"
+    }
+  },
+  "portfolio": {
+    "eyebrow": "<portfolio />",
+    "title": "Work & Projects",
+    "description": "Some projects I have worked on. Click to see more details.",
+    "filters": {
+      "all": "All",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "fullstack": "Fullstack"
+    }
+  },
+  "experience": {
+    "eyebrow": "<experience />",
+    "title": "Work Experience",
+    "description": "My career journey as a Web Developer."
+  },
+  "testimonials": {
+    "eyebrow": "<testimonials />",
+    "title": "What They Say",
+    "description": "Reviews and feedback from clients and colleagues I have collaborated with."
+  },
+  "contact": {
+    "eyebrow": "<contact />",
+    "title": "Let's Collaborate",
+    "description": "Have a project or question? Feel free to contact me.",
+    "email": "Email",
+    "whatsapp": "WhatsApp",
+    "location": "Location",
+    "follow": "Follow Me"
+  },
+  "form": {
+    "name": "Name",
+    "namePlaceholder": "Your name",
+    "email": "Email",
+    "emailPlaceholder": "email\\@example.com",
+    "subject": "Subject",
+    "subjectPlaceholder": "Message subject",
+    "message": "Message",
+    "messagePlaceholder": "Write your message here...",
+    "send": "Send Message",
+    "sending": "Sending...",
+    "validate": {
+      "nameRequired": "Name is required",
+      "emailRequired": "Email is required",
+      "emailInvalid": "Invalid email format",
+      "subjectRequired": "Subject is required",
+      "messageRequired": "Message is required",
+      "messageTooShort": "Message must be at least 10 characters"
+    },
+    "success": "Your message has been sent successfully. Thank you!",
+    "error": "Failed to send message. Please try again or contact via email directly."
+  },
+  "projectCard": {
+    "demo": "Demo",
+    "repository": "Repository"
+  },
+  "footer": {
+    "backToTop": "Back to top",
+    "rights": "All rights reserved"
+  },
+  "meta": {
+    "title": "Portfolio — Web Developer",
+    "description": "Web Developer Portfolio - Showcasing profile, skills, experience, and work/projects as a Web Developer.",
+    "ogDescription": "Personal portfolio showcasing profile, skills, and work as a Web Developer."
+  }
+}

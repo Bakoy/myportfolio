@@ -6,6 +6,7 @@
     "portfolio": "Portofolio",
     "experience": "Pengalaman",
     "testimonials": "Testimoni",
+    "licenses": "Lisensi",
     "contact": "Kontak",
     "hireMe": "Hire Me"
   },
@@ -62,7 +63,15 @@
   "testimonials": {
     "eyebrow": "<testimoni />",
     "title": "Apa Kata Mereka",
-    "description": "Ulasan dan kesan dari klien serta rekan kerja yang pernah berkolaborasi dengan saya."
+    "description": "Ulasan dan kesan dari klien serta rekan kerja yang pernah berkolaborasi dengan saya.",
+    "comingSoonTitle": "Segera Hadir",
+    "comingSoonDesc": "Testimonial dari klien dan rekan kerja akan segera ditampilkan di sini. Nantikan kisah kolaborasi dan ulasan hasil kerja saya."
+  },
+  "certifications": {
+    "eyebrow": "<lisensi />",
+    "title": "Lisensi & Sertifikasi",
+    "description": "Sertifikasi dan lisensi yang saya peroleh untuk mendukung keahlian profesional.",
+    "viewCredential": "Lihat credential"
   },
   "contact": {
     "eyebrow": "<kontak />",

@@ -5,7 +5,7 @@ import { Send, LoaderCircle, CheckCircle2 } from '@lucide/vue'
 
 const { t } = useI18n()
 
-const FORM_ENDPOINT = 'https://formspree.io/f/your-form-id'
+const FORM_ENDPOINT = 'https://formspree.io/f/xzebvzlg'
 
 const formData = ref({
   name: '',
@@ -60,9 +60,7 @@ const handleSubmit = async () => {
 
 const inputClasses = (hasError: boolean) =>
   `w-full rounded-xl border bg-white px-4 py-3 text-slate-900 outline-none transition-all placeholder:text-slate-400 focus:border-primary-500 focus:ring-2 focus:ring-primary-500/30 dark:bg-slate-800 dark:text-white ${
-    hasError
-      ? 'border-red-500 dark:border-red-500'
-      : 'border-slate-300 dark:border-slate-700'
+    hasError ? 'border-red-500 dark:border-red-500' : 'border-slate-300 dark:border-slate-700'
   }`
 
 const labelClasses = 'mb-1.5 block text-sm font-semibold text-slate-700 dark:text-slate-300'

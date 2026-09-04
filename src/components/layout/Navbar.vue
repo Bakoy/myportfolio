@@ -22,6 +22,7 @@ const navItems = computed(() => [
   { label: t('nav.skills'), href: '#skills' },
   { label: t('nav.portfolio'), href: '#portfolio' },
   { label: t('nav.experience'), href: '#experience' },
+  { label: t('nav.licenses'), href: '#certifications' },
   { label: t('nav.testimonials'), href: '#testimonials' },
   { label: t('nav.contact'), href: '#contact' },
 ])

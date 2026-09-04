@@ -6,6 +6,7 @@
     "portfolio": "Portfolio",
     "experience": "Experience",
     "testimonials": "Testimonials",
+    "licenses": "Licenses",
     "contact": "Contact",
     "hireMe": "Hire Me"
   },
@@ -62,7 +63,15 @@
   "testimonials": {
     "eyebrow": "<testimonials />",
     "title": "What They Say",
-    "description": "Reviews and feedback from clients and colleagues I have collaborated with."
+    "description": "Reviews and feedback from clients and colleagues I have collaborated with.",
+    "comingSoonTitle": "Coming Soon",
+    "comingSoonDesc": "Testimonials from clients and colleagues will be displayed here soon. Stay tuned for stories and reviews of my work."
+  },
+  "certifications": {
+    "eyebrow": "<licenses />",
+    "title": "Licenses & Certifications",
+    "description": "Certifications and licenses I have earned to support my professional expertise.",
+    "viewCredential": "View credential"
   },
   "contact": {
     "eyebrow": "<contact />",

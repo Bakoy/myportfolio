@@ -4,6 +4,7 @@ import { profile, profileContent } from './profile'
 import { projects } from './projects'
 import { experiences } from './experiences'
 import { testimonials } from './testimonials'
+import { certifications } from './certifications'
 import { skills } from './skills'
 import { socialLinks } from './socialLinks'
 
@@ -21,11 +22,14 @@ export function useLocalizedData() {
 
   const currentTestimonials = computed(() => testimonials[currentLocale.value])
 
+  const currentCertifications = computed(() => certifications[currentLocale.value])
+
   return {
     currentProfile,
     currentProjects,
     currentExperiences,
     currentTestimonials,
+    currentCertifications,
     skills,
     socialLinks,
   }

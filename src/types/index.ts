@@ -37,6 +37,15 @@ export interface Testimonial {
   rating: number
 }
 
+export interface Certification {
+  id: number
+  name: string
+  issuer: string
+  period: string
+  credentialId?: string
+  credentialUrl?: string
+}
+
 export interface SocialLink {
   name: string
   url: string

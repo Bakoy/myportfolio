@@ -10,7 +10,7 @@ export const skills: Skill[] = [
   { name: 'Next.js', level: 80, category: 'frontend' },
   { name: 'Nuxt.js', level: 82, category: 'frontend' },
   { name: 'Angular', level: 75, category: 'frontend' },
-  { name: 'NestJS', level: 78, category: 'backend' },
+  { name: 'NestJS', level: 80, category: 'backend' },
   { name: 'Express.js', level: 84, category: 'backend' },
   { name: 'Node.js', level: 83, category: 'backend' },
   { name: 'Tailwind CSS', level: 90, category: 'frontend' },

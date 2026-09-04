@@ -25,7 +25,8 @@ const navItems = computed(() => [
     <div class="mx-auto max-w-6xl px-4 sm:px-6">
       <div class="flex flex-col items-center gap-8">
         <a href="#home" class="font-mono text-2xl font-bold tracking-tight text-white">
-          <span class="text-primary-500">&lt;</span>John<span class="text-primary-500">/&gt;</span>
+          <span class="text-primary-500">&lt;</span>{{ currentProfile.nickname
+          }}<span class="text-primary-500">/&gt;</span>
         </a>
 
         <nav class="flex flex-wrap justify-center gap-x-8 gap-y-3">
@@ -53,7 +54,9 @@ const navItems = computed(() => [
           </a>
         </div>
 
-        <div class="flex w-full flex-col items-center justify-between gap-4 border-t border-slate-800 pt-6 sm:flex-row">
+        <div
+          class="flex w-full flex-col items-center justify-between gap-4 border-t border-slate-800 pt-6 sm:flex-row"
+        >
           <p class="text-sm text-slate-500">
             © {{ new Date().getFullYear() }} {{ currentProfile.name }}. {{ t('footer.rights') }}.
           </p>

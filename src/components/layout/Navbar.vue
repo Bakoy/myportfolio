@@ -6,6 +6,7 @@ import { socialLinks } from '@/data/socialLinks'
 import { useDarkMode } from '@/composables/useDarkMode'
 import { useLocale } from '@/composables/useLocale'
 import SocialIcon from '@/components/ui/SocialIcon.vue'
+import { useLocalizedData } from '@/data'
 
 const { t } = useI18n()
 const { currentLocale, setLocale } = useLocale()
@@ -43,6 +44,8 @@ const handleScroll = () => {
   isScrolled.value = window.scrollY > 20
 }
 
+const { currentProfile } = useLocalizedData()
+
 onMounted(() => {
   window.addEventListener('scroll', handleScroll)
   handleScroll()
@@ -56,11 +59,14 @@ onUnmounted(() => {
 <template>
   <header
     class="fixed inset-x-0 top-0 z-50 transition-all duration-300"
-    :class="isScrolled ? 'bg-white/90 shadow-lg backdrop-blur-md dark:bg-slate-950/90' : 'bg-transparent'"
+    :class="
+      isScrolled ? 'bg-white/90 shadow-lg backdrop-blur-md dark:bg-slate-950/90' : 'bg-transparent'
+    "
   >
     <nav class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
       <a href="#home" class="font-mono text-xl font-bold tracking-tight">
-        <span class="text-primary-500">&lt;</span>John<span class="text-primary-500">/&gt;</span>
+        <span class="text-primary-500">&lt;</span>{{ currentProfile.nickname
+        }}<span class="text-primary-500">/&gt;</span>
       </a>
 
       <div class="hidden items-center gap-8 md:flex">

@@ -1,16 +1,17 @@
 export const profile = {
-  name: 'John Doe',
+  name: 'Dany Rahmansyah',
+  nickname: 'Dany',
   position: 'Web Developer',
-  location: 'Jakarta, Indonesia',
-  email: 'johndoe@example.com',
-  phone: '+62 812-3456-7890',
-  photo: '/images/profile.svg',
+  location: 'Bandung, Indonesia',
+  email: 'danyrahmansyah01@gmail.com',
+  phone: '+62 813-1242-0622',
+  photo: '/images/foto.png',
   cvUrl: '/cv.pdf',
   stats: {
-    years: 5,
-    projects: 20,
-    clients: 15,
-    awards: 3,
+    years: 8,
+    projects: 12,
+    clients: 12,
+    awards: 1,
   },
 }
 

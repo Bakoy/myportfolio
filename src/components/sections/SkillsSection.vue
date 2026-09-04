@@ -1,38 +1,45 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
-import { Code2, Server, Wrench } from '@lucide/vue'
 import { skills } from '@/data/skills'
+import { skillIcons } from '@/data/skillIcons'
 import SectionTitle from '@/components/ui/SectionTitle.vue'
 
 const { t } = useI18n()
 
-const skillGroups = computed(() => ({
-  frontend: skills.filter((s) => s.category === 'frontend'),
-  backend: skills.filter((s) => s.category === 'backend'),
-  tools: skills.filter((s) => s.category === 'tool'),
-}))
+const MIN_SIZE = 48
+const MAX_SIZE = 96
+const MIN_LEVEL = 70
+const MAX_LEVEL = 95
 
-const groups = computed(() => [
-  {
-    key: 'frontend' as const,
-    title: t('skills.groups.frontendTitle'),
-    icon: Code2,
-    description: t('skills.groups.frontendDesc'),
-  },
-  {
-    key: 'backend' as const,
-    title: t('skills.groups.backendTitle'),
-    icon: Server,
-    description: t('skills.groups.backendDesc'),
-  },
-  {
-    key: 'tools' as const,
-    title: t('skills.groups.toolsTitle'),
-    icon: Wrench,
-    description: t('skills.groups.toolsDesc'),
-  },
-])
+function seededRand(seed: string) {
+  let h = 0
+  for (let i = 0; i < seed.length; i++) {
+    h = (Math.imul(31, h) + seed.charCodeAt(i)) | 0
+  }
+  return () => {
+    h = (Math.imul(h, 1664525) + 1013904223) | 0
+    return ((h >>> 0) % 1000) / 1000
+  }
+}
+
+const allSkills = computed(() =>
+  skills.map((skill) => {
+    const icon = skillIcons[skill.icon]
+    const clamped = Math.min(Math.max(skill.level, MIN_LEVEL), MAX_LEVEL)
+    const size =
+      ((clamped - MIN_LEVEL) / (MAX_LEVEL - MIN_LEVEL)) * (MAX_SIZE - MIN_SIZE) + MIN_SIZE
+    const rnd = seededRand(skill.name + ':float')
+    return {
+      ...skill,
+      size: Math.round(size),
+      icon,
+      duration: `${(2.6 + rnd() * 2.6).toFixed(2)}s`,
+      delay: `${(rnd() * 2).toFixed(2)}s`,
+      floatDist: `${(10 + rnd() * 5).toFixed(1)}px`,
+    }
+  }),
+)
 </script>
 
 <template>
@@ -44,41 +51,56 @@ const groups = computed(() => [
         :description="t('skills.description')"
       />
 
-      <div class="grid gap-6 md:grid-cols-3">
+      <div class="flex flex-wrap items-center justify-center gap-10 sm:gap-12">
         <div
-          v-for="group in groups"
+          v-for="skill in allSkills"
           v-reveal
-          :key="group.key"
-          class="reveal rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-all hover:border-primary-500 hover:shadow-xl dark:border-slate-700 dark:bg-slate-800"
+          :key="skill.name"
+          class="reveal group flex flex-col items-center gap-2"
         >
-          <div class="mb-6 flex items-center gap-3">
-            <div class="rounded-xl bg-primary-500/10 p-3 text-primary-500 dark:bg-primary-500/20 dark:text-primary-400">
-              <component :is="group.icon" class="h-6 w-6" />
-            </div>
-            <div>
-              <h3 class="font-bold text-slate-900 dark:text-white">{{ group.title }}</h3>
-              <p class="text-xs text-slate-500 dark:text-slate-400">{{ group.description }}</p>
-            </div>
-          </div>
-
-          <div class="space-y-4">
-            <div v-for="skill in skillGroups[group.key]" :key="skill.name">
-              <div class="mb-1 flex items-center justify-between">
-                <span class="font-mono text-sm font-medium text-slate-700 dark:text-slate-300">
-                  {{ skill.name }}
-                </span>
-                <span class="font-mono text-xs text-primary-500">{{ skill.level }}%</span>
-              </div>
-              <div class="h-2 overflow-hidden rounded-full bg-slate-200 dark:bg-slate-700">
-                <div
-                  class="h-full rounded-full bg-gradient-to-r from-primary-400 to-primary-600 transition-all duration-1000"
-                  :style="{ width: skill.level + '%' }"
-                ></div>
-              </div>
-            </div>
+          <div
+            class="float-anim flex flex-col items-center gap-2"
+            :style="{
+              animationDuration: skill.duration,
+              animationDelay: skill.delay,
+              '--float-dist': skill.floatDist,
+            }"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              :width="skill.size"
+              :height="skill.size"
+              class="fill-slate-400 transition-all duration-300 ease-out group-hover:scale-125 group-hover:fill-primary-500 group-hover:drop-shadow-lg dark:fill-slate-500"
+            >
+              <path :d="skill.icon?.path || ''" />
+            </svg>
+            <span
+              class="font-mono text-sm font-medium text-slate-500 transition-colors group-hover:text-primary-500 dark:text-slate-400"
+            >
+              {{ skill.name }}
+            </span>
           </div>
         </div>
       </div>
     </div>
   </section>
 </template>
+
+<style scoped>
+.float-anim {
+  animation-name: float;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(calc(-1 * var(--float-dist)));
+  }
+}
+</style>

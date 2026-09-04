@@ -96,24 +96,51 @@ const techStack = computed(() => ['Vue.js', 'React.js', 'Next.js', 'NestJS', 'Ta
       <div v-reveal class="reveal order-1 flex justify-center md:order-2">
         <div class="group relative">
           <div
-            class="absolute inset-0 -rotate-6 rounded-3xl bg-primary-500/20 transition-all duration-500 group-hover:scale-105 group-hover:rotate-0 group-hover:bg-primary-500/40 dark:bg-primary-500/30"
-          ></div>
-          <a href="#about">
-            <img
-              :src="currentProfile.photo"
-              :alt="currentProfile.name"
-              class="relative h-64 w-64 cursor-pointer rounded-3xl object-cover shadow-xl transition-all duration-500 group-hover:scale-105 group-hover:shadow-2xl group-hover:shadow-primary-500/25 sm:h-80 sm:w-80"
-            />
-          </a>
-          <a
-            :href="currentProfile.cvUrl"
-            class="absolute -bottom-4 -right-4 flex items-center gap-2 rounded-2xl bg-white px-4 py-3 font-semibold text-slate-800 shadow-lg transition-all hover:bg-primary-50 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700"
+            class="float-anim"
+            :style="{
+              animationDuration: '5s',
+              animationDelay: '0.5s',
+              '--float-dist': '15px',
+            }"
           >
-            <Download class="h-5 w-5 text-primary-500" />
-            {{ t('hero.downloadCv') }}
-          </a>
+            <div
+              class="absolute inset-0 -rotate-6 rounded-3xl bg-primary-500/20 transition-all duration-500 group-hover:scale-105 group-hover:rotate-0 group-hover:bg-primary-500/40 dark:bg-primary-500/30"
+            ></div>
+            <a href="#about">
+              <img
+                :src="currentProfile.photo"
+                :alt="currentProfile.name"
+                class="relative h-64 w-64 cursor-pointer rounded-3xl object-cover shadow-xl transition-all duration-500 group-hover:scale-105 group-hover:shadow-2xl group-hover:shadow-primary-500/25 sm:h-80 sm:w-80"
+              />
+            </a>
+            <a
+              :href="currentProfile.cvUrl"
+              class="absolute -bottom-4 -right-4 flex items-center gap-2 rounded-2xl bg-white px-4 py-3 font-semibold text-slate-800 shadow-lg transition-all hover:bg-primary-50 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700"
+            >
+              <Download class="h-5 w-5 text-primary-500" />
+              {{ t('hero.downloadCv') }}
+            </a>
+          </div>
         </div>
       </div>
     </div>
   </section>
 </template>
+
+<style scoped>
+.float-anim {
+  animation-name: float;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(calc(-1 * var(--float-dist)));
+  }
+}
+</style>

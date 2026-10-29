@@ -52,3 +52,27 @@ npm run test:unit
 ```sh
 npm run lint
 ```
+
+## Docker
+
+### Production (nginx, static build)
+
+```sh
+docker compose up -d --build
+# http://localhost:8080
+```
+
+Ganti port host dengan `APP_PORT`, misalnya `APP_PORT=3000 docker compose up -d --build`.
+
+### Development (Vite dev server + hot reload)
+
+```sh
+docker compose -f docker-compose.dev.yml up
+# http://localhost:5173
+```
+
+Catatan:
+
+- `docker-compose.yml` membangun `dist/` di dalam image (multi-stage: `node:24-alpine` → `nginx:1.29-alpine`) lalu menyajikannya lewat `docker/nginx.conf` (gzip, cache asset, SPA fallback).
+- `docker-compose.dev.yml` mem-bind-mount source dan menyimpan `node_modules` di named volume, jadi dependency host tidak tercampur.
+- `.dockerignore` menjaga `node_modules`, `dist`, dan `.git` tidak ikut ke build context.

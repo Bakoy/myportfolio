@@ -1,0 +1,29 @@
+# Production: builds the static site and serves it with nginx.
+#
+#   docker compose up -d --build      -> http://localhost:8080
+#   APP_PORT=3000 docker compose up -d --build
+#
+# For hot-reload development use docker-compose.dev.yml instead:
+#   docker compose -f docker-compose.dev.yml up
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: myportfolio:latest
+    container_name: myportfolio
+    restart: unless-stopped
+    ports:
+      - '${APP_PORT:-8080}:80'
+    healthcheck:
+      test: ['CMD', 'wget', '--quiet', '--tries=1', '--spider', 'http://127.0.0.1/']
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+    logging:
+      driver: json-file
+      options:
+        max-size: '10m'
+        max-file: '3'

@@ -53,6 +53,16 @@ npm run test:unit
 npm run lint
 ```
 
+## Analytics (opsional)
+
+Analytics memakai Google Analytics 4 lewat `vue-gtag`.
+
+1. Salin `.env.example` menjadi `.env` (kalau belum ada).
+2. Isi `VITE_GTAG_ID` dengan Measurement ID GA4 (`G-XXXXXXXXXX`).
+3. Restart dev server / build ulang.
+
+Biarkan nilainya kosong untuk menonaktifkan analytics. Untuk build Docker, `docker compose` membaca `.env` dan meneruskannya sebagai build arg `VITE_GTAG_ID` (lihat `Dockerfile`); `docker build` manual perlu `--build-arg VITE_GTAG_ID=G-XXXXXXXXXX`.
+
 ## Docker
 
 ### Production (nginx, static build)
@@ -74,5 +84,6 @@ docker compose -f docker-compose.dev.yml up
 Catatan:
 
 - `docker-compose.yml` membangun `dist/` di dalam image (multi-stage: `node:24-alpine` → `nginx:1.29-alpine`) lalu menyajikannya lewat `docker/nginx.conf` (gzip, cache asset, SPA fallback).
+- Build di dalam image memakai `npm run build-only` (tanpa `vue-tsc`) agar cepat di host RAM kecil; type-check tetap jalankan `npm run build` / `npm run lint` sebelum push. Cache npm disimpan lewat BuildKit cache mount.
 - `docker-compose.dev.yml` mem-bind-mount source dan menyimpan `node_modules` di named volume, jadi dependency host tidak tercampur.
 - `.dockerignore` menjaga `node_modules`, `dist`, dan `.git` tidak ikut ke build context.

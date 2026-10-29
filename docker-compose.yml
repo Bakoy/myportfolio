@@ -11,6 +11,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        # Read from the local .env (or the shell environment). Empty = analytics off.
+        VITE_GTAG_ID: ${VITE_GTAG_ID:-}
     image: myportfolio:latest
     container_name: myportfolio
     restart: unless-stopped

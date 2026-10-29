@@ -4,10 +4,12 @@ import { useI18n } from 'vue-i18n'
 import { ArrowUp } from '@lucide/vue'
 import { useLocalizedData } from '@/data'
 import { socialLinks } from '@/data/socialLinks'
+import { useAnalytics } from '@/composables/useAnalytics'
 import SocialIcon from '@/components/ui/SocialIcon.vue'
 
 const { t } = useI18n()
 const { currentProfile } = useLocalizedData()
+const { trackSocialClick } = useAnalytics()
 
 const navItems = computed(() => [
   { label: t('nav.home'), href: '#home' },
@@ -50,6 +52,7 @@ const navItems = computed(() => [
             rel="noopener"
             class="rounded-full border border-slate-700 p-2.5 text-slate-400 transition-all hover:border-primary-500 hover:text-primary-400"
             :aria-label="social.name"
+            @click="trackSocialClick(social.name)"
           >
             <SocialIcon :name="social.icon" class="h-5 w-5" />
           </a>

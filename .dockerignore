@@ -8,6 +8,9 @@ coverage
 .idea
 *.log
 *.local
+.env
+.env.*
+!.env.example
 *.tsbuildinfo
 .eslintcache
 __screenshots__

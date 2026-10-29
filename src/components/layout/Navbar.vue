@@ -5,11 +5,13 @@ import { Menu, X, Sun, Moon, Globe } from '@lucide/vue'
 import { socialLinks } from '@/data/socialLinks'
 import { useDarkMode } from '@/composables/useDarkMode'
 import { useLocale } from '@/composables/useLocale'
+import { useAnalytics } from '@/composables/useAnalytics'
 import SocialIcon from '@/components/ui/SocialIcon.vue'
 import { useLocalizedData } from '@/data'
 
 const { t } = useI18n()
 const { currentLocale, setLocale } = useLocale()
+const { trackLanguageChange, trackSocialClick } = useAnalytics()
 
 const isOpen = ref(false)
 const isLangOpen = ref(false)
@@ -37,6 +39,7 @@ const currentLangLabel = computed(
 )
 
 const switchLanguage = (code: 'id' | 'en') => {
+  if (code !== currentLocale.value) trackLanguageChange(code)
   setLocale(code)
   isLangOpen.value = false
 }
@@ -176,6 +179,7 @@ onUnmounted(() => {
             rel="noopener"
             class="text-slate-500 transition-colors hover:text-primary-500 dark:text-slate-400"
             :aria-label="social.name"
+            @click="trackSocialClick(social.name)"
           >
             <SocialIcon :name="social.icon" class="h-5 w-5" />
           </a>

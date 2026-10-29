@@ -4,10 +4,12 @@ import { useI18n } from 'vue-i18n'
 import { ArrowRight, Download, MapPin, BadgeCheck } from '@lucide/vue'
 import { useLocalizedData } from '@/data'
 import { socialLinks } from '@/data/socialLinks'
+import { useAnalytics } from '@/composables/useAnalytics'
 import SocialIcon from '@/components/ui/SocialIcon.vue'
 
 const { t } = useI18n()
 const { currentProfile } = useLocalizedData()
+const { trackCvDownload, trackSocialClick } = useAnalytics()
 
 const techStack = computed(() => ['Vue.js', 'React.js', 'Next.js', 'NestJS', 'Tailwind CSS'])
 </script>
@@ -80,6 +82,7 @@ const techStack = computed(() => ['Vue.js', 'React.js', 'Next.js', 'NestJS', 'Ta
             rel="noopener"
             class="rounded-full border border-slate-200 p-2.5 text-slate-600 transition-all hover:border-primary-500 hover:text-primary-500 dark:border-slate-700 dark:text-slate-300"
             :aria-label="social.name"
+            @click="trackSocialClick(social.name)"
           >
             <SocialIcon :name="social.icon" class="h-5 w-5" />
           </a>
@@ -116,6 +119,7 @@ const techStack = computed(() => ['Vue.js', 'React.js', 'Next.js', 'NestJS', 'Ta
             <a
               :href="currentProfile.cvUrl"
               class="absolute -bottom-4 -right-4 flex items-center gap-2 rounded-2xl bg-white px-4 py-3 font-semibold text-slate-800 shadow-lg transition-all hover:bg-primary-50 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700"
+              @click="trackCvDownload(currentProfile.cvUrl)"
             >
               <Download class="h-5 w-5 text-primary-500" />
               {{ t('hero.downloadCv') }}
@@ -132,6 +136,10 @@ const techStack = computed(() => ['Vue.js', 'React.js', 'Next.js', 'NestJS', 'Ta
   animation-name: float;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
+}
+
+.group:hover .float-anim {
+  animation-play-state: paused;
 }
 
 @keyframes float {

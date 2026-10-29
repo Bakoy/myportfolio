@@ -2,8 +2,10 @@
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { Send, LoaderCircle, CheckCircle2 } from '@lucide/vue'
+import { useAnalytics } from '@/composables/useAnalytics'
 
 const { t } = useI18n()
+const { trackLead } = useAnalytics()
 
 const FORM_ENDPOINT = 'https://formspree.io/f/xzebvzlg'
 
@@ -49,6 +51,7 @@ const handleSubmit = async () => {
 
     if (response.ok) {
       status.value = 'success'
+      trackLead()
       formData.value = { name: '', email: '', subject: '', message: '' }
     } else {
       status.value = 'error'

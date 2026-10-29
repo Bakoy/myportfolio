@@ -18,6 +18,8 @@ services:
     environment:
       # Helps file watching on Docker Desktop / network filesystems
       CHOKIDAR_USEPOLLING: 'true'
+      # Google Analytics measurement ID, read from the local .env file.
+      VITE_GTAG_ID: ${VITE_GTAG_ID:-}
     volumes:
       - .:/app
       - node_modules:/app/node_modules

@@ -94,6 +94,10 @@ const allSkills = computed(() =>
   animation-iteration-count: infinite;
 }
 
+.group:hover .float-anim {
+  animation-play-state: paused;
+}
+
 @keyframes float {
   0%,
   100% {
